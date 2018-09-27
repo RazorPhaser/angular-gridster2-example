@@ -1,24 +1,39 @@
-<h1>Working Dashboard Example</h1>
+<div class="container-fluid d-flex h-100 flex-column">
 
-<div class="d-flex flex-row-reverse bd-highlight">
-  <div *ngIf="isDashboardLocked" class="p-2 bd-highlight"><button class="btn btn-primary" (click)="toggleDashboardLock()">Unlock
-      Dashboard</button></div>
-  <div *ngIf="!isDashboardLocked" class="p-2 bd-highlight"><button class="btn btn-primary" (click)="toggleDashboardLock()">Lock
-      Dashboard</button></div>
-  <div class="p-2 bd-highlight"><button class="btn btn-primary" (click)="saveDashboard()">Save Dashboard</button></div>
+  <div class="row">
+    <h1>Working Dashboard Example</h1>
+  </div>
+
+  <!-- This is for bootstrap styling -->
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <div class="p-2 bd-highlight"><button class="btn btn-warning" [routerLink]="['/away']">Navigate Away</button></div>
+    <!-- The operation buttons for Gridster -->
+    <!-- Lock, Unlock, and Save the dashboard -->
+    <div *ngIf="isDashboardLocked" class="p-2 bd-highlight"><button class="btn btn-primary" (click)="toggleDashboardLock()">Unlock
+        Dashboard</button></div>
+    <div *ngIf="!isDashboardLocked" class="p-2 bd-highlight"><button class="btn btn-primary" (click)="toggleDashboardLock()">Lock
+        Dashboard</button></div>
+    <div class="p-2 bd-highlight"><button class="btn btn-primary" (click)="saveDashboard()">Save Dashboard</button></div>
+  </div>
+
+  <!-- This is for bootstrap styling -->
+  <div class="row d-flex" style="flex:1;">
+    <div class="col-12">
+      <gridster [options]="options">
+        <!-- overflow: auto!important; is added to the gridster-item element
+        to allow scrollbars to appear on content that is larger than the space of the widget -->
+        <gridster-item style="overflow: auto!important;" *ngFor="let item of dashboard" [ngSwitch]="item.componentName"
+          [item]="item">
+          <!-- Use ngSwitch to select between the componentName listed (by convention) in the GridsterItem object 
+          the componentName contains the Component selector in this example -->
+          <!-- Remember that when we declare an expession for the ngSwitchCase, we need to declare the static string within single quotes
+          otherwise Angular will interpret the expression as a variable rather than a string -->
+          <app-my-widget-component1 *ngSwitchCase="'app-my-widget-component1'"></app-my-widget-component1>
+          <app-my-widget-component2 *ngSwitchCase="'app-my-widget-component2'"></app-my-widget-component2>
+          <app-my-widget-component3 *ngSwitchCase="'app-my-widget-component3'"></app-my-widget-component3>
+        </gridster-item>
+      </gridster>
+    </div>
+  </div>
+
 </div>
-
-<gridster [options]="options">
-  <!-- overflow: auto!important; is added to the gridster-item element
-  to allow scrollbars to appear on content that is larger than the space of the widget -->
-  <gridster-item style="overflow: auto!important;" *ngFor="let item of dashboard" [ngSwitch]="item.componentName"
-    [item]="item">
-    <!-- Use ngSwitch to select between the componentName listed (by convention) in the GridsterItem object 
-    the componentName contains the Component selector in this example -->
-    <!-- Remember that when we declare an expession for the ngSwitchCase, we need to declare the static string within single quotes
-    otherwise Angular will interpret the expression as a variable rather than a string -->
-    <app-my-widget-component1 *ngSwitchCase="'app-my-widget-component1'"></app-my-widget-component1>
-    <app-my-widget-component2 *ngSwitchCase="'app-my-widget-component2'"></app-my-widget-component2>
-    <app-my-widget-component3 *ngSwitchCase="'app-my-widget-component3'"></app-my-widget-component3>
-  </gridster-item>
-</gridster>

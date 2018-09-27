@@ -8,6 +8,7 @@ export class GridsterStorageService {
 
     private _dashboardStorageKey = 'myGridsterDashboard';
     private _optionsStorageKey = 'myGridsterOptions';
+    private _defaultLockStatus = false;
 
     constructor() { }
 
@@ -38,8 +39,8 @@ export class GridsterStorageService {
             return JSON.parse(lockStatus);
         }
         else {
-            this.SaveLockStatus(true);
-            return true;
+            this.SaveLockStatus(this._defaultLockStatus);
+            return this._defaultLockStatus;
         }
     }
 
@@ -59,6 +60,7 @@ export class GridsterStorageService {
     // Save the dashboard to memory
     StoreDashboard(dashboard: any) {
         localStorage.setItem(this._dashboardStorageKey, JSON.stringify(dashboard));
+        console.log('Dashboard saved');
     }
 
     // Helper method to locate the index of item in an array 

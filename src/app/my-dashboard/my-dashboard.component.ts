@@ -27,7 +27,8 @@ export class MyDashboardComponent implements OnInit {
     // It is called when a widget changes location or the number of units (x,y) it occupies
 
     // Log the item to the console
-    //console.info('itemChanged', item, itemComponent);
+    console.info('itemChanged');
+    // console.info('itemChanged', item, itemComponent);
 
     // Persist the current dashboard to storage
     this._gridsterStorageService.StoreDashboard(this.dashboard);
