@@ -1,5 +1,7 @@
 # AngularGridster2Example
 
+https://stackblitz.com/github/RazorPhaser/angular-gridster2-example
+
 ## Install 
 
 ### npm
