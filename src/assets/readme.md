@@ -1,4 +1,4 @@
-2# AngularGridster2Example
+# AngularGridster2Example
 
 ## Install 
 
